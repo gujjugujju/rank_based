@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDA Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Exploratory Data Analysis Summary</h1>
+        <h2>Dataset Information</h2>
+        <p>Rows: {{ eda_info.rows }}</p>
+        <p>Columns: {{ eda_info.columns }}</p>
+        <h3>Data Types</h3>
+        <ul>
+            {% for column, dtype in eda_info.datatypes.items() %}
+                <li>{{ column }}: {{ dtype }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Missing Values</h3>
+        <ul>
+            {% for column, missing in eda_info.missing_values.items() %}
+                <li>{{ column }}: {{ missing }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Rating Summary</h3>
+        <ul>
+            {% for stat, value in eda_info.rating_summary.items() %}
+                <li>{{ stat }}: {{ value }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Unique Users and Items</h3>
+        <p>Unique Users: {{ eda_info.unique_users }}</p>
+        <p>Unique Items: {{ eda_info.unique_items }}</p>
+        <h3>Users with Most Ratings</h3>
+        <ul>
+            {% for user, count in eda_info.most_rated.items() %}
+                <li>User {{ user }}: {{ count }} ratings</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
